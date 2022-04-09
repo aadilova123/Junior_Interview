@@ -12,6 +12,10 @@ C помощью SELECT выведите всех пассажиров, кото
 как `COMPANY_NAME`.
 
 <!-- ЗАКРЕПИТЕ ВАШ SELECT ОТ 1 ЗАДАНИЯ ЗДЕСЬ -->
+SELECT P.ID, P.Name as 'PASSENGER_NAME', Trip.plane, co.name as 'COMPANY_NAME' from Passenger as P 
+LEFT JOIN Pass_in_trip  as pt on pt.id = P.id
+LEFT JOIN Trip on Trip.id=pt.trip
+LEFT JOIN Company as co on co.id=Trip.company where Trip.plane='Boeing' and co.name='air_France'
 
 ### Задание 2.
 
@@ -20,6 +24,10 @@ C помощью SELECT выведите количество пассажиро
 Обязательные поля для вывода: Номер полета и Количество пассажиров.
 
 <!-- ЗАКРЕПИТЕ ВАШ SELECT ОТ 2 ЗАДАНИЯ ЗДЕСЬ -->
+SELECT trip, count(passenger) from Pass_in_trip
+GROUP BY trip
+ORDER BY count(passenger) DESC 
+ 
 
 ### Задание 3.
 
@@ -29,5 +37,6 @@ C помощью SELECT выведите количество пассажиро
 и `COUNT` (Количество пассажиров, имена которых начинаются с этой буквы).
 
 <!-- ЗАКРЕПИТЕ ВАШ SELECT ОТ 3 ЗАДАНИЯ ЗДЕСЬ -->
-
+SELECT left(name, 1) as b, count(id) as c FROM Passenger
+GROUP BY b ORDER BY c DESC 
 <!-- После выполнения всех заданий, необходимо сделать push в репозиторий и отправить ссылку на него -->
